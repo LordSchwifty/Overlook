@@ -7,7 +7,23 @@
   <title>Webpack Starter Kit</title>
 </head>
 <body>
-  <img src="./images/turing-logo.png" alt="turing logo">
+  <nav class="nav-bar">
+    <img class="nav-logo pointer" id="logo" src="./images/turing-logo.png" alt="Take Me Home" tabindex="0">
+    <menu class="nav-links">
+        <div class="dropdown pointer" tabindex="0">
+            <li class="dropbtn filter-header" id="filterHeader">Filter By Room Type</li>
+              <div class="dropdown-content" id="filterDropdown">
+                <li>type</li>
+                <li>type</li>
+                <li>type</li>
+                <li>type</li>
+                <li>type</li>
+             </div>
+        </div>
+        <li id="navMyBookings" class="pointer" tabindex="0">My Bookings</li>
+        <li id="navUserInfo" class="user-name">User Name</li>
+    </menu>
+</nav>
   
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>
