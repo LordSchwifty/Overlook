@@ -109,3 +109,4 @@ const rooms = [
         
           }
     ]
+    export default {bookings, rooms, customers}
