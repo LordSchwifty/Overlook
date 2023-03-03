@@ -13,6 +13,24 @@ class Bookings {
       })
         return getRoomForUser
      }
+
+     findOpenRooms(bookingsData, roomsData) {
+      const findRooms = roomsData.filter(room => {
+        return room.number !== bookingsData.roomNumber
+      })
+     }
+     totalCost(bookingsData, roomsData, customerData){
+        const getRoomForUser = bookingsData.filter(booking => {
+          console.log('this is the data:', bookingsData)
+          return booking.userID === customerData.id
+        })
+          return getRoomForUser.reduce((acc, cv) => {
+            if(cv.roomNumber === roomsData.number){
+              acc += roomsData.costPerNight
+            }
+            return acc
+          }, 0)
+       }
 //   findBookingsById() {
 //  if(bookings.roomNumber === Rooms.number)
 //   }

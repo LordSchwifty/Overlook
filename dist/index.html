@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="datepicker.min.css">
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Overlook Hotel</title>
 </head>
 <body>
-  <nav class="nav-bar">
+  <section class="nav-bar">
     <img class="nav-logo pointer" id="logo" src="./images/hotel.png" alt="hotel logo" tabindex="0">
     <menu class="nav-links">
       <form>
@@ -31,16 +30,29 @@
         <li id="navMyBookings" class="pointer" tabindex="0">My Bookings</li>
         <li id="navUserInfo" class="user-name">User Name</li>
     </menu>
+    </section>
+      <section class="all-bookings">
+        <div class="box">
+          <img class="box-image" src="./images/room.png" alt="room-image"></img>
+          <h2 class="room-title">Residential Suite</h2>
+          <p class="bed-info">bedSize: queen</p>
+          <p class="num-beds">numBeds: 1</p>
+          <p class="num-beds">costPerNight: 358.4</p>
+          <button class="book-btn"></button>
+         </div>
+         <div class="box">
+           <img class="box-image" src="./images/room.png" alt="room-image"></img>
+           <h2 class="room-title">Single Room</h2>
+           <p class="bed-info">bedSize: king</p>
+           <p class="num-beds">numBeds: 1</p>
+           <p class="num-beds">costPerNight: 491.14</p>
+         </div>
+    </section>
      <main>
-       <section class="all-bookings" id="allBookings">
-        
-        </section>
 
      </main>
-</nav>
   
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>
-  <script src="datepicker.min.js"></script>
 </body>
 </html>
