@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import Bookings from '../src/classes/bookings';
 import testData from '../src/data/test-data';
+import Customer from '../src/classes/customers';
 
 describe('bookings class', function() {
     let booking1
@@ -13,7 +14,6 @@ describe('bookings class', function() {
         expect(Bookings).to.be.a('function');
       });
     it('should be an instance of bookings', function() {
-        console.log('data:', bookingsData)
       expect(booking1).to.be.an.instanceOf(Bookings);
     });
     it('should have an id', () => {
@@ -31,5 +31,15 @@ describe('bookings class', function() {
       it('should have a room number', () => {
         expect(booking1.roomNumber).to.equal(15);
         expect(booking1.roomNumber).to.equal(bookingsData[0].roomNumber);
+      });
+      it('should give a list of customers bookings', () => {
+        let customer1 = new Customer({id: 1, name: "Leatha Ullrich"})
+        expect(booking1.filterBookingsById(bookingsData, customer1)).to.eql([{
+            "id": "5fwrgu4i7k55hl6t8",
+            "userID": 1,
+            "date": "2022/02/05",
+            "roomNumber": 12,
+        
+          }]);
       });
   });

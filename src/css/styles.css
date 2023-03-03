@@ -75,3 +75,9 @@ body {
   overflow: hidden;
   white-space: nowrap;
 }
+
+form {
+  display: flex;
+  align-items: flex-end;
+}
+

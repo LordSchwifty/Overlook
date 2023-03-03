@@ -1,4 +1,4 @@
-// import Rooms from '../src/classes/rooms';
+
 class Bookings {
    constructor(bookingsData) {
        this.id = bookingsData.id;
@@ -6,6 +6,13 @@ class Bookings {
        this.date = bookingsData.date;
        this.roomNumber = bookingsData.roomNumber;
    }
+     filterBookingsById(bookingsData, customerData) {
+      const getRoomForUser = bookingsData.filter(booking => {
+        console.log('this is the data:', bookingsData)
+        return booking.userID === customerData.id
+      })
+        return getRoomForUser
+     }
 //   findBookingsById() {
 //  if(bookings.roomNumber === Rooms.number)
 //   }
