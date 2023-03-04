@@ -1,18 +1,12 @@
 // import Customer from './classes/customer';
-// import Bookings from './classes/bookings';
+import Data from './classes/Data';
 // import Rooms from './classes/rooms';
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
-
-// An example of how you tell webpack to use a CSS (SCSS) file
+// import Booking from './classes/booking'
 import './css/styles.css';
-
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/hotel.png'
 import './images/room.png'
 //global variables
-let newCustomer
-let getAllRooms
+let bookings
 
 //-------------fetch requests
 
@@ -28,6 +22,9 @@ const getRooms = fetch("http://localhost:3001/api/v1/rooms")
 Promise.all([getCustomers, getBookings, getRooms])
   .then((data) => {
        console.log(data)
+       console.log(data[1].bookings)
+       bookings = new Data(data[1].bookings)
+       console.log(bookings)
         //  newCustomer = new Customer(data[0].customers[0]);
         //  console.log(newCustomer, "Customer")
 })

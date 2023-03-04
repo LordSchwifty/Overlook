@@ -1,27 +1,25 @@
-
-class Bookings {
+import Booking from './Booking'
+class Data {
    constructor(bookingsData) {
-       this.id = bookingsData.id;
-       this.userID = bookingsData.userID;
-       this.date = bookingsData.date;
-       this.roomNumber = bookingsData.roomNumber;
+       console.log("this ish:", bookingsData)
+       this.bookings = bookingsData.map(booking => new Booking(booking))
    }
-     filterBookingsById(bookingsData, customerData) {
-      const getRoomForUser = bookingsData.filter(booking => {
-        console.log('this is the data:', bookingsData)
+     filterBookingsById(customerData) {
+      const getRoomForUser = this.bookings.filter(booking => {
+        console.log('this is the data:', booking)
         return booking.userID === customerData.id
       })
         return getRoomForUser
      }
 
-     findOpenRooms(bookingsData, roomsData) {
-      const findRooms = roomsData.filter(room => {
-        return room.number !== bookingsData.roomNumber
-      })
-     }
-     totalCost(bookingsData, roomsData, customerData){
-        const getRoomForUser = bookingsData.filter(booking => {
-          console.log('this is the data:', bookingsData)
+    //  findOpenRooms(bookingsData, roomsData) {
+    //   const findRooms = roomsData.filter(room => {
+    //     return room.number !== bookingsData.roomNumber
+    //   })
+    //  }
+     totalCost(roomsData, customerData){
+        const getRoomForUser = this.bookings.filter(booking => {
+          console.log('this is the data:', booking)
           return booking.userID === customerData.id
         })
           return getRoomForUser.reduce((acc, cv) => {
@@ -49,4 +47,4 @@ class Bookings {
 // filter the bookings by customer id. filterByBookings(userid) if userid is the same as bookings user id return the list of bookings
 // take the total number of bookings and adddthem together by the room price and return total
 // find room cost based on room number and instantiate a newe instance of room
-export default Bookings;
+export default Data;

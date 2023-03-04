@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import Bookings from '../src/classes/bookings';
+import Bookings from '../src/classes/Data';
 import testData from '../src/data/test-data';
 import Customer from '../src/classes/customers';
 
