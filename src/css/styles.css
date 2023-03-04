@@ -1,5 +1,9 @@
+
+
 body {
   background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgb(92, 75, 203) 100%);
+  display: flex;
+  justify-content: center;
 }
 .nav-bar {
   display: flex;
@@ -81,6 +85,14 @@ form {
   align-items: flex-end;
 }
 
+.rooms-view{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-top: 126px;
+}
+
+
 .all-bookings{
   display: flex;
   justify-content: space-around;
@@ -115,7 +127,16 @@ form {
 }
 
 .bookings-view {
+  margin-top: 200px;
   height: 200px;
   width: 700px;
   background-color: #E1E1E1;
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hidden {
+  display: none;
 }

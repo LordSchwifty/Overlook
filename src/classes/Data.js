@@ -28,15 +28,18 @@ class Data {
        }
 
        findOpenRooms(dateQuery) {
-        const findRooms = this.bookings.filter(booking => booking[date] === dateQuery)
-        return findRooms.reduce((acc, cv) => {
+        const findRooms = this.bookings.filter(booking => booking.date !== dateQuery)
+        const openRooms = findRooms.reduce((acc, cv) => {
          this.rooms.forEach(room => {
-          if(room.number !== cv.roomNumber){
+          if(room.number === cv.roomNumber){
+            if(!acc.includes(room)) {
             acc.push(room)
+            }
           }
          })
           return acc
         }, [])
+          return openRooms
        }
 //filter through the bookings array and return all rooms booked on a certain date
 //then filter through the rooms array and return all the rooms that are not matched booked on that date

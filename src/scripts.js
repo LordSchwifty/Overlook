@@ -7,12 +7,16 @@ import './images/hotel.png'
 import './images/room.png'
 //global variables
 let dataClass
-const allBookings = document.querySelector('.all-bookings')
-const myBookingsBtn = document.querySelector('#navMyBookings')
-
+const allBookings = document.querySelector('.booking-info')
+const myBookings = document.getElementById('navMyBookings')
+const dateBtn = document.querySelector('.date-button')
+const dateInput = document.getElementById('date')
+const roomsView = document.querySelector('.rooms-view')
 //event listeners
-myBookingsBtn.addEventListener('click', customerBookings)
+myBookings.addEventListener('click', customerBookings)
 window.addEventListener('load', getPromises)
+dateBtn.addEventListener('click',(event) => {
+    findRooms(event)})
 //-------------fetch requests
 
 const getCustomers = fetch("http://localhost:3001/api/v1/customers")
@@ -44,4 +48,24 @@ function customerBookings(bookingsInfo) {
         allBookings.innerHTML += `
         <p class="booking-info">Booking Date:${booking.date}, Room Number:${booking.roomNumber} </p>`
     })
+}
+
+function findRooms(event) {
+    event.preventDefault()
+const dateSelected = dateInput.value.split('-').join('/')
+const availableRooms = dataClass.findOpenRooms(dateSelected)
+console.log(availableRooms)
+roomsView.innerHTML = "";
+availableRooms.forEach(room => {
+    roomsView.innerHTML += `
+    <div class="box">
+    <img class="box-image" src="./images/room.png" alt="room-image"></img>
+    <h2 class="room-title">${room.roomType}</h2>
+    <p class="bed-info">bedSize: ${room.bedSize}</p>
+    <p class="num-beds">numBeds: ${room.numBeds}</p>
+    <p class="num-beds">costPerNight: ${room.costPerNight}</p>
+    <button class="book-btn">Book Now!</button>
+  </div>`
+})
+
 }

@@ -11,11 +11,11 @@
     <img class="nav-logo pointer" id="logo" src="./images/hotel.png" alt="hotel logo" tabindex="0">
     <menu class="nav-links">
       <form>
-        <label id="date">
+        <label for="date">
           Pick A Date:
           <input type="date" name="date" id="date" />
         </label>
-         <!-- <p><button class="date-button">Submit</button></p> -->
+         <p><button class="date-button">Submit</button></p>
       </form>
         <div class="dropdown pointer" tabindex="0">
             <li class="dropbtn filter-header" id="filterHeader">Filter By Room Type</li>
@@ -31,24 +31,24 @@
         <li id="navUserInfo" class="user-name">User Name</li>
     </menu>
     </section>
-      <section class="all-bookings hidden">
-        <div class="box">
+      <section class="rooms-view" id="allRooms">
+        <!-- <!-- <div class="box">
           <img class="box-image" src="./images/room.png" alt="room-image"></img>
           <h2 class="room-title">Residential Suite</h2>
           <p class="bed-info">bedSize: queen</p>
           <p class="num-beds">numBeds: 1</p>
           <p class="num-beds">costPerNight: 358.4</p>
           <button class="book-btn">Book Now!</button>
-         </div>
-         <div class="box">
+         </div> -->
+         <!-- <div class="box">
            <img class="box-image" src="./images/room.png" alt="room-image"></img>
            <h2 class="room-title">Single Room</h2>
            <p class="bed-info">bedSize: king</p>
            <p class="num-beds">numBeds: 1</p>
            <p class="num-beds">costPerNight: 491.14</p>
-         </div>
+         </div> --> -->
     </section>
-    <section class="bookings-view">
+    <section class="bookings-view hidden">
        <div class="all-bookings">
          <p class="booking-info">Booking Date:, Room Number: </p>
        </div>
