@@ -7,10 +7,9 @@ class Data {
        this.bookings = bookingsData.map(booking => new Booking(booking))
        this.rooms = roomsData.map(room => new Rooms(room))
    }
-     filterBookingsById(customerData) {
+     filterBookingsById(customer) {
       const getRoomForUser = this.bookings.filter(booking => {
-        console.log('this is the data:', booking)
-        return booking.userID === customerData.id
+        return booking.userID === customer.id
       })
         return getRoomForUser
      }
