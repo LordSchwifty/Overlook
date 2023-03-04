@@ -12,6 +12,7 @@ const myBookings = document.getElementById('navMyBookings')
 const dateBtn = document.querySelector('.date-button')
 const dateInput = document.getElementById('date')
 const roomsView = document.querySelector('.rooms-view')
+const totalCost = document.querySelector('.total-cost')
 //event listeners
 myBookings.addEventListener('click', customerBookings)
 window.addEventListener('load', getPromises)
@@ -43,11 +44,14 @@ Promise.all([getCustomers, getBookings, getRooms])
 //functions
 function customerBookings(bookingsInfo) {
    const myBookingArray = bookingsInfo.filterBookingsById(bookingsInfo.customers[0])
+   const getTotalCost = bookingsInfo.myTotalCost(bookingsInfo.customers[0])
     allBookings.innerHTML = "";
+    totalCost.innerHTML = "";
     myBookingArray.forEach(booking => {
         allBookings.innerHTML += `
         <p class="booking-info">Booking Date:${booking.date}, Room Number:${booking.roomNumber} </p>`
     })
+       totalCost.innerHTML = `<p class="total-cost">Total Cost: ${getTotalCost}</p>`
 }
 
 function findRooms(event) {
