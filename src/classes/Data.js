@@ -1,8 +1,11 @@
 import Booking from './Booking'
+import Rooms from './rooms'
+import Customer from './customers'
 class Data {
-   constructor(bookingsData) {
-       console.log("this ish:", bookingsData)
+   constructor(customersData, bookingsData, roomsData,) {
+       this.customers = customersData.map(customer => new Customer(customer))
        this.bookings = bookingsData.map(booking => new Booking(booking))
+       this.rooms = roomsData.map(room => new Rooms(room))
    }
      filterBookingsById(customerData) {
       const getRoomForUser = this.bookings.filter(booking => {
@@ -12,35 +15,32 @@ class Data {
         return getRoomForUser
      }
 
-    //  findOpenRooms(bookingsData, roomsData) {
-    //   const findRooms = roomsData.filter(room => {
-    //     return room.number !== bookingsData.roomNumber
-    //   })
-    //  }
-     totalCost(roomsData, customerData){
+     totalCost(customerData){
         const getRoomForUser = this.bookings.filter(booking => {
           console.log('this is the data:', booking)
           return booking.userID === customerData.id
         })
           return getRoomForUser.reduce((acc, cv) => {
-            if(cv.roomNumber === roomsData.number){
-              acc += roomsData.costPerNight
+            if(cv.roomNumber === this.rooms.number){
+              acc += this.rooms.costPerNight
             }
             return acc
           }, 0)
        }
-//   findBookingsById() {
-//  if(bookings.roomNumber === Rooms.number)
-//   }
-//    findRooms() {
-//    let findbook = findbookingsbyId(this.id)
-//     //bookings.map((booking) => {
-    
-//    }
-   //find the rooms
-   //add upp the cost of the rooms for that userId
-   //use room number to find room data
 
+       findOpenRooms(dateQuery) {
+        const findRooms = this.bookings.filter(booking => booking[date] === dateQuery)
+        return findRooms.reduce((acc, cv) => {
+         this.rooms.forEach(room => {
+          if(room.number !== cv.roomNumber){
+            acc.push(room)
+          }
+         })
+          return acc
+        }, [])
+       }
+//filter through the bookings array and return all rooms booked on a certain date
+//then filter through the rooms array and return all the rooms that are not matched booked on that date
 }
 
 

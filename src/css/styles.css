@@ -113,3 +113,9 @@ form {
   height: 40px;
   width: 80px;
 }
+
+.bookings-view {
+  height: 200px;
+  width: 700px;
+  background-color: #E1E1E1;
+}

@@ -6,8 +6,12 @@ import './css/styles.css';
 import './images/hotel.png'
 import './images/room.png'
 //global variables
-let bookings
+let newData
+const allBookings = document.querySelector('.all-bookings')
+const myBookingsBtn = document.querySelector('navMyBookings')
 
+//event listeners
+myBookingsBtn.addEventListener('click', customerBookings)
 //-------------fetch requests
 
 const getCustomers = fetch("http://localhost:3001/api/v1/customers")
@@ -23,8 +27,18 @@ Promise.all([getCustomers, getBookings, getRooms])
   .then((data) => {
        console.log(data)
        console.log(data[1].bookings)
-       bookings = new Data(data[1].bookings)
-       console.log(bookings)
+       newData = new Data(data[0].customers, data[1].bookings, data[2].rooms)
+       console.log(newData)
         //  newCustomer = new Customer(data[0].customers[0]);
         //  console.log(newCustomer, "Customer")
 })
+
+
+//functions
+function customerBookings(bookings) {
+    allBookings.innerHTML = "";
+    bookings.forEach(booking => {
+        allBookings.innerHTML += `
+        <p class="booking-info">Booking Date:${booking.date}, Room Number:${booking.roomNumber} </p>`
+    })
+}
