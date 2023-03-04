@@ -44,7 +44,8 @@ Promise.all([getCustomers, getBookings, getRooms])
 //functions
 function customerBookings(bookingsInfo) {
    const myBookingArray = bookingsInfo.filterBookingsById(bookingsInfo.customers[0])
-   const getTotalCost = bookingsInfo.myTotalCost(bookingsInfo.customers[0])
+   const getTotalCost = bookingsInfo.myTotalCost(bookingsInfo.customers[0]).toFixed()
+   console.log(getTotalCost)
     allBookings.innerHTML = "";
     totalCost.innerHTML = "";
     myBookingArray.forEach(booking => {

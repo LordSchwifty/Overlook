@@ -19,9 +19,14 @@ class Data {
           console.log('this is the data:', booking)
           return booking.userID === customerData.id
         })
-          return getRoomForUser.reduce((acc, cv) => {
-            if(cv.roomNumber === this.rooms.number){
-              acc += this.rooms.costPerNight
+          const roomsArray = getRoomForUser.map(room => {
+            console.log(room)
+            return room.roomNumber
+          })
+          return this.rooms.reduce((acc, cv) => {
+            if(roomsArray.includes(cv.number)){
+              console.log(acc)
+              acc += cv.costPerNight
             }
             return acc
           }, 0)
