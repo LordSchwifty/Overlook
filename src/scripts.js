@@ -8,6 +8,11 @@ import './images/room.png'
 //global variables
 let dataClass
 let tag
+const loginView = document.querySelector('.login-view')
+const navBar = document.querySelector('.nav-bar')
+const userName = document.getElementById('uname')
+const password = document.getElementById('pword')
+const loginBtn = document.querySelector('.login-btn')
 const filterDropdown = document.getElementById('filterDropdown');
 const allBookings = document.querySelector('.booking-info')
 const myBookings = document.getElementById('navMyBookings')
@@ -22,6 +27,8 @@ myBookings.addEventListener('click', showBookingsView)
 window.addEventListener('load', getPromises)
 dateBtn.addEventListener('click',(event) => {
     findRooms(event)})
+loginBtn.addEventListener('click',(event) => {
+    login(event)})
 filterDropdown.addEventListener('click', (event) => {
     filterRoomsByType(event)
 });    
@@ -60,6 +67,16 @@ function customerBookings(bookingsInfo) {
         <p class="booking-info">Booking Date:${booking.date}, Room Number:${booking.roomNumber} </p>`
     })
        totalCost.innerHTML = `<p class="total-cost">Total Cost: ${getTotalCost}</p>`
+}
+function login(event) {
+    event.preventDefault()
+    const user = userName.value.toLowerCase()
+    const passcode = password.value
+    if(user === 'customer50' && passcode === 'overlook2021'){
+    console.log(user)
+    console.log(passcode)
+    showMainPage()
+    }
 }
 
 function findRooms(event) {
@@ -110,4 +127,11 @@ filterOpenRooms.forEach(room => {
     bookingsView.classList.remove('hidden')
     costView.classList.remove('hidden')
     roomsView.classList.add('hidden')
+ }
+
+ function showMainPage() {
+    bookingsView.classList.remove('hidden')
+    costView.classList.remove('hidden')
+    navBar.classList.remove('hidden')
+    loginView.classList.add('hidden')
  }

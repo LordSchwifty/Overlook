@@ -7,7 +7,7 @@
   <title>Overlook Hotel</title>
 </head>
 <body>
-  <section class="nav-bar">
+  <section class="nav-bar hidden">
     <img class="nav-logo pointer" id="logo" src="./images/hotel.png" alt="hotel logo" tabindex="0">
     <menu class="nav-links">
       <form>
@@ -47,15 +47,29 @@
            <p class="num-beds">costPerNight: 491.14</p>
          </div> --> -->
     </section>
-    <section class="bookings-view">
+    <section class="bookings-view hidden">
        <div class="all-bookings">
          <p class="booking-info">Booking Date:, Room Number: </p>
        </div>
     </section>
-      <section class="cost-view">
+      <section class="cost-view hidden">
         <div class="total-cost">
           <p class="total-cost">Total Cost:</p>
          </div>
+      </section>
+      <section class="login-view">
+        <form>
+          <div class="container">
+              <label><b>Username</b></label>
+              <input type="text" id="uname" placeholder="Enter Username" name="uname" required>
+   
+              <label><b>Password</b></label>
+              <input type="password" id="pword" placeholder="Enter Password" name="psw" required>
+   
+              <button class="login-btn" type="submit">Login</button>
+             
+          </div>
+      </form>
       </section>
      <main>
 
