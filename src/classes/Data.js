@@ -46,7 +46,7 @@ class Data {
          }
 
       filterOpenRooms(tag) {
-        this.openRooms.filter(room => room.roomType === room.roomType[tag])
+        return this.openRooms.filter(room => room.roomType === tag)
       }
         
           

@@ -15,10 +15,10 @@ const dateBtn = document.querySelector('.date-button')
 const dateInput = document.getElementById('date')
 const roomsView = document.querySelector('.rooms-view')
 const totalCost = document.querySelector('.total-cost')
-const bookingsView = document.querySelector('bookings-view')
+const bookingsView = document.querySelector('.bookings-view')
 const costView = document.querySelector('.cost-view')
 //event listeners
-myBookings.addEventListener('click', customerBookings)
+myBookings.addEventListener('click', showBookingsView)
 window.addEventListener('load', getPromises)
 dateBtn.addEventListener('click',(event) => {
     findRooms(event)})
@@ -66,7 +66,6 @@ function findRooms(event) {
     event.preventDefault()
 const dateSelected = dateInput.value.split('-').join('/')
 const availableRooms = dataClass.findOpenRooms(dateSelected)
-// showRoomView()
 roomsView.innerHTML = "";
 availableRooms.forEach(room => {
     roomsView.innerHTML += `
@@ -78,13 +77,14 @@ availableRooms.forEach(room => {
     <p class="num-beds">costPerNight: ${room.costPerNight}</p>
     <button class="book-btn">Book Now!</button>
   </div>`
+  showRoomView()
 })
 
 }
  function showRoomView() {
     bookingsView.classList.add('hidden')
-costView.classList.add('hidden')
-roomsView.classList.remove('hidden')
+    costView.classList.add('hidden')
+    roomsView.classList.remove('hidden')
  }
 
  function filterRoomsByType(event) {
@@ -104,4 +104,10 @@ filterOpenRooms.forEach(room => {
     <button class="book-btn">Book Now!</button>
   </div>`
 })
+ }
+
+ function showBookingsView() {
+    bookingsView.classList.remove('hidden')
+    costView.classList.remove('hidden')
+    roomsView.classList.add('hidden')
  }
