@@ -4,13 +4,64 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Webpack Starter Kit</title>
+  <title>Overlook Hotel</title>
 </head>
 <body>
-  <img src="./images/turing-logo.png" alt="turing logo">
+  <section class="nav-bar">
+    <img class="nav-logo pointer" id="logo" src="./images/hotel.png" alt="hotel logo" tabindex="0">
+    <menu class="nav-links">
+      <form>
+        <label for="date">
+          Pick A Date:
+          <input type="date" name="date" id="date" />
+        </label>
+         <p><button class="date-button">Submit</button></p>
+      </form>
+        <div class="dropdown pointer" tabindex="0">
+            <li class="dropbtn filter-header" id="filterHeader">Filter By Room Type</li>
+              <div class="dropdown-content" id="filterDropdown">
+                <li>Residential Suite</li>
+                <li>Suite</li>
+                <li>Single Room</li>
+                <li>Junior Suite</li>
+             </div>
+        </div>
+        <li id="navMyBookings" class="pointer" tabindex="0">My Bookings</li>
+        <li id="navUserInfo" class="user-name">User Name</li>
+    </menu>
+    </section>
+      <section class="rooms-view" id="allRooms">
+        <!-- <!-- <div class="box">
+          <img class="box-image" src="./images/room.png" alt="room-image"></img>
+          <h2 class="room-title">Residential Suite</h2>
+          <p class="bed-info">bedSize: queen</p>
+          <p class="num-beds">numBeds: 1</p>
+          <p class="num-beds">costPerNight: 358.4</p>
+          <button class="book-btn">Book Now!</button>
+         </div> -->
+         <!-- <div class="box">
+           <img class="box-image" src="./images/room.png" alt="room-image"></img>
+           <h2 class="room-title">Single Room</h2>
+           <p class="bed-info">bedSize: king</p>
+           <p class="num-beds">numBeds: 1</p>
+           <p class="num-beds">costPerNight: 491.14</p>
+         </div> --> -->
+    </section>
+    <section class="bookings-view hidden">
+       <div class="all-bookings">
+         <p class="booking-info">Booking Date:, Room Number: </p>
+       </div>
+    </section>
+      <section class="cost-view hidden">
+        <div class="total-cost">
+          <p class="total-cost">Total Cost:</p>
+         </div>
+      </section>
+     <main>
+
+     </main>
   
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>
-
 </body>
 </html>
