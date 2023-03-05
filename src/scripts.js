@@ -7,17 +7,24 @@ import './images/hotel.png'
 import './images/room.png'
 //global variables
 let dataClass
+let tag
+const filterDropdown = document.getElementById('filterDropdown');
 const allBookings = document.querySelector('.booking-info')
 const myBookings = document.getElementById('navMyBookings')
 const dateBtn = document.querySelector('.date-button')
 const dateInput = document.getElementById('date')
 const roomsView = document.querySelector('.rooms-view')
 const totalCost = document.querySelector('.total-cost')
+const bookingsView = document.querySelector('bookings-view')
+const costView = document.querySelector('.cost-view')
 //event listeners
 myBookings.addEventListener('click', customerBookings)
 window.addEventListener('load', getPromises)
 dateBtn.addEventListener('click',(event) => {
     findRooms(event)})
+filterDropdown.addEventListener('click', (event) => {
+    filterRoomsByType(event)
+});    
 //-------------fetch requests
 
 const getCustomers = fetch("http://localhost:3001/api/v1/customers")
@@ -59,7 +66,7 @@ function findRooms(event) {
     event.preventDefault()
 const dateSelected = dateInput.value.split('-').join('/')
 const availableRooms = dataClass.findOpenRooms(dateSelected)
-console.log(availableRooms)
+// showRoomView()
 roomsView.innerHTML = "";
 availableRooms.forEach(room => {
     roomsView.innerHTML += `
@@ -74,3 +81,27 @@ availableRooms.forEach(room => {
 })
 
 }
+ function showRoomView() {
+    bookingsView.classList.add('hidden')
+costView.classList.add('hidden')
+roomsView.classList.remove('hidden')
+ }
+
+ function filterRoomsByType(event) {
+  let tag = event.target.innerText.toLowerCase();
+  console.log(tag)
+  let filterOpenRooms = dataClass.filterOpenRooms(tag)
+  console.log(filterOpenRooms)
+  roomsView.innerHTML = "";
+filterOpenRooms.forEach(room => {
+    roomsView.innerHTML += `
+    <div class="box">
+    <img class="box-image" src="./images/room.png" alt="room-image"></img>
+    <h2 class="room-title">${room.roomType}</h2>
+    <p class="bed-info">bedSize: ${room.bedSize}</p>
+    <p class="num-beds">numBeds: ${room.numBeds}</p>
+    <p class="num-beds">costPerNight: ${room.costPerNight}</p>
+    <button class="book-btn">Book Now!</button>
+  </div>`
+})
+ }

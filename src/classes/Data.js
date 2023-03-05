@@ -6,6 +6,7 @@ class Data {
        this.customers = customersData.map(customer => new Customer(customer))
        this.bookings = bookingsData.map(booking => new Booking(booking))
        this.rooms = roomsData.map(room => new Rooms(room))
+       this.openRooms = []
    }
      filterBookingsById(customer) {
       const getRoomForUser = this.bookings.filter(booking => {
@@ -39,8 +40,14 @@ class Data {
              return booking.roomNumber !== room.number
            })
           })
+           this.openRooms = openRooms
+           console.log("shiiiiit:", this.openRooms)
            return openRooms
          }
+
+      filterOpenRooms(tag) {
+        this.openRooms.filter(room => room.roomType === room.roomType[tag])
+      }
         
           
        
