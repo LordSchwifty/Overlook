@@ -74,7 +74,7 @@ function login(event) {
     idNum = parseInt(createId[1])
     indexNum = idNum - 1
     console.log(indexNum)
-    if(user === 'customer50' && passcode === 'overlook2021'){
+    if(passcode === 'overlook2021'){
     console.log(user)
     console.log(passcode)
     showMainPage()
@@ -116,7 +116,7 @@ availableRooms.forEach(room => {
 
 })
 } else {
-    roomsView.innerText = `I'm sorry shithead`
+    roomsView.innerText = `We are so sorry but there are no available rooms on this date. Sorry for the inconvenience.`
     showRoomView()
  }
 }
@@ -172,5 +172,7 @@ filterOpenRooms.forEach(room => {
             }
         }) .then(response => response.json())
            .then(data => dataClass.addBooking(data.newBooking))
+           .then(getPromises())
            .then(showBookingsView())
+           .then(customerBookings(dataClass))
  }
