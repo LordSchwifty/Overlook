@@ -6,8 +6,11 @@ import './css/styles.css';
 import './images/hotel.png'
 import './images/room.png'
 //global variables
+let dateSelected
 let dataClass
 let tag
+const bookBtn = document.querySelector('.book-btn')
+const userInfo = document.getElementById('navUserInfo')
 const loginView = document.querySelector('.login-view')
 const navBar = document.querySelector('.nav-bar')
 const userName = document.getElementById('uname')
@@ -23,6 +26,8 @@ const totalCost = document.querySelector('.total-cost')
 const bookingsView = document.querySelector('.bookings-view')
 const costView = document.querySelector('.cost-view')
 //event listeners
+roomsView.addEventListener('click', (event) => {
+     addNewBooking(event)})
 myBookings.addEventListener('click', showBookingsView)
 window.addEventListener('load', getPromises)
 dateBtn.addEventListener('click',(event) => {
@@ -76,13 +81,15 @@ function login(event) {
     console.log(user)
     console.log(passcode)
     showMainPage()
+    userInfo.innerText = `${user}`
     }
 }
 
 function findRooms(event) {
     event.preventDefault()
-const dateSelected = dateInput.value.split('-').join('/')
+    dateSelected = dateInput.value.split('-').join('/')
 const availableRooms = dataClass.findOpenRooms(dateSelected)
+if(availableRooms.length) {
 roomsView.innerHTML = "";
 availableRooms.forEach(room => {
     roomsView.innerHTML += `
@@ -92,11 +99,15 @@ availableRooms.forEach(room => {
     <p class="bed-info">bedSize: ${room.bedSize}</p>
     <p class="num-beds">numBeds: ${room.numBeds}</p>
     <p class="num-beds">costPerNight: ${room.costPerNight}</p>
-    <button class="book-btn">Book Now!</button>
+    <button id="${room.number}" class="book-btn">Book Now!</button>
   </div>`
   showRoomView()
-})
 
+})
+} else {
+    roomsView.innerText = `I'm sorry shithead`
+    showRoomView()
+ }
 }
  function showRoomView() {
     bookingsView.classList.add('hidden')
@@ -118,7 +129,7 @@ filterOpenRooms.forEach(room => {
     <p class="bed-info">bedSize: ${room.bedSize}</p>
     <p class="num-beds">numBeds: ${room.numBeds}</p>
     <p class="num-beds">costPerNight: ${room.costPerNight}</p>
-    <button class="book-btn">Book Now!</button>
+    <button id="${room.number}" class="book-btn">Book Now!</button>
   </div>`
 })
  }
@@ -134,4 +145,21 @@ filterOpenRooms.forEach(room => {
     costView.classList.remove('hidden')
     navBar.classList.remove('hidden')
     loginView.classList.add('hidden')
+ }
+
+ function addNewBooking(event) {
+   const roomNum = event.target.id
+   fetch('http://localhost:3001/api/v1/bookings', {
+            method: 'POST',
+            body: JSON.stringify({ 
+                "userID": 1,
+                "date": dateSelected,
+                "roomNumber": parseInt(roomNum)
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }) .then(response => response.json())
+           .then(data => dataClass.addBooking(data.newBooking))
+
  }

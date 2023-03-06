@@ -48,6 +48,11 @@ class Data {
       filterOpenRooms(tag) {
         return this.openRooms.filter(room => room.roomType === tag)
       }
+
+      addBooking(newBooking) {
+        this.bookings.push(new Booking(newBooking))
+        console.log(this.bookings)
+      }
         
           
        

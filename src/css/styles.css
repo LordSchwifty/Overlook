@@ -170,10 +170,9 @@ form {
         border: 1px solid #ccc;
         box-sizing: border-box;
     }
-    /*set a style for the buttons*/
      
     .login-btn {
-        background-color: #4CAF50;
+        background-color: #287e59;
         color: white;
         padding: 14px 20px;
         margin: 8px 0;
