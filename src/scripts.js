@@ -9,6 +9,9 @@ import './images/room.png'
 let dateSelected
 let dataClass
 let tag
+let idNum
+let indexNum
+
 const bookBtn = document.querySelector('.book-btn')
 const userInfo = document.getElementById('navUserInfo')
 const loginView = document.querySelector('.login-view')
@@ -27,7 +30,8 @@ const bookingsView = document.querySelector('.bookings-view')
 const costView = document.querySelector('.cost-view')
 //event listeners
 roomsView.addEventListener('click', (event) => {
-     addNewBooking(event)})
+     addNewBooking(event)
+    })
 myBookings.addEventListener('click', showBookingsView)
 window.addEventListener('load', getPromises)
 dateBtn.addEventListener('click',(event) => {
@@ -48,42 +52,49 @@ const getBookings = fetch("http://localhost:3001/api/v1/bookings")
 const getRooms = fetch("http://localhost:3001/api/v1/rooms")
   .then((response) => response.json())
 
+//functions
+
 function getPromises() {
 Promise.all([getCustomers, getBookings, getRooms])
   .then((data) => {
        console.log(data)
        console.log(data[1].bookings)
        dataClass = new Data(data[0].customers, data[1].bookings, data[2].rooms)
-       customerBookings(dataClass)
+       
         //  newCustomer = new Customer(data[0].customers[0]);
         //  console.log(newCustomer, "Customer")
 })
 }
 
-//functions
-function customerBookings(bookingsInfo) {
-   const myBookingArray = bookingsInfo.filterBookingsById(bookingsInfo.customers[0])
-   const getTotalCost = bookingsInfo.myTotalCost(bookingsInfo.customers[0]).toFixed()
-   console.log(getTotalCost)
-    allBookings.innerHTML = "";
-    totalCost.innerHTML = "";
-    myBookingArray.forEach(booking => {
-        allBookings.innerHTML += `
-        <p class="booking-info">Booking Date:${booking.date}, Room Number:${booking.roomNumber} </p>`
-    })
-       totalCost.innerHTML = `<p class="total-cost">Total Cost: ${getTotalCost}</p>`
-}
 function login(event) {
     event.preventDefault()
     const user = userName.value.toLowerCase()
     const passcode = password.value
+    let createId = user.split('customer')
+    idNum = parseInt(createId[1])
+    indexNum = idNum - 1
+    console.log(indexNum)
     if(user === 'customer50' && passcode === 'overlook2021'){
     console.log(user)
     console.log(passcode)
     showMainPage()
     userInfo.innerText = `${user}`
+    customerBookings(dataClass)
     }
 }
+
+function customerBookings(bookingsInfo) {
+    const myBookingArray = bookingsInfo.filterBookingsById(bookingsInfo.customers[indexNum])
+    const getTotalCost = bookingsInfo.myTotalCost(bookingsInfo.customers[indexNum]).toFixed()
+    console.log(getTotalCost)
+     allBookings.innerHTML = "";
+     totalCost.innerHTML = "";
+     myBookingArray.forEach(booking => {
+         allBookings.innerHTML += `
+         <p class="booking-info">Booking Date:${booking.date}, Room Number:${booking.roomNumber} </p>`
+     })
+        totalCost.innerHTML = `<p class="total-cost">Total Cost: ${getTotalCost}</p>`
+ }
 
 function findRooms(event) {
     event.preventDefault()
@@ -152,7 +163,7 @@ filterOpenRooms.forEach(room => {
    fetch('http://localhost:3001/api/v1/bookings', {
             method: 'POST',
             body: JSON.stringify({ 
-                "userID": 1,
+                "userID": indexNum,
                 "date": dateSelected,
                 "roomNumber": parseInt(roomNum)
             }),
@@ -161,5 +172,5 @@ filterOpenRooms.forEach(room => {
             }
         }) .then(response => response.json())
            .then(data => dataClass.addBooking(data.newBooking))
-
+           .then(showBookingsView())
  }
