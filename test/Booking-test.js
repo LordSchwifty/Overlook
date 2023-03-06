@@ -1,20 +1,19 @@
 import { expect } from 'chai';
 import Booking from '../src/classes/Booking';
 import testData from '../src/data/test-data';
-import Customer from '../src/classes/customers';
 
 describe('booking class', function() {
     let booking1
     let bookingsData
     beforeEach(() => {
         bookingsData = testData.bookings
-        booking1 = new Bookings(bookingsData[0])
+        booking1 = new Booking(bookingsData[0])
     })
     it('should be a function', () => {
         expect(Booking).to.be.a('function');
       });
     it('should be an instance of bookings', function() {
-      expect(booking1).to.be.an.instanceOf(Bookings);
+      expect(booking1).to.be.an.instanceOf(Booking);
     });
     it('should have an id', () => {
         expect(booking1.id).to.equal("5fwrgu4i7k55hl6sz");
@@ -31,25 +30,5 @@ describe('booking class', function() {
       it('should have a room number', () => {
         expect(booking1.roomNumber).to.equal(15);
         expect(booking1.roomNumber).to.equal(bookingsData[0].roomNumber);
-      });
-      it.skip('should give a list of customers bookings', () => {
-        let customer1 = new Customer({id: 1, name: "Leatha Ullrich"})
-        expect(booking1.filterBookingsById(bookingsData, customer1)).to.eql([{
-            "id": "5fwrgu4i7k55hl6t8",
-            "userID": 1,
-            "date": "2022/02/05",
-            "roomNumber": 12,
-        
-          }]);
-      });
-      it.skip('should give a list of open rooms', () => {
-        let customer1 = new Customer({id: 1, name: "Leatha Ullrich"})
-        expect(booking1.filterBookingsById(bookingsData, customer1)).to.eql([{
-            "id": "5fwrgu4i7k55hl6t8",
-            "userID": 1,
-            "date": "2022/02/05",
-            "roomNumber": 12,
-        
-          }]);
       });
   });
