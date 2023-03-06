@@ -44,13 +44,35 @@ filterDropdown.addEventListener('click', (event) => {
 //-------------fetch requests
 
 const getCustomers = fetch("http://localhost:3001/api/v1/customers")
-  .then((response) => response.json())
+  .then(response => {
+    if(!response.ok) {
+        throw new Error("There was an error. Status Code: ", response.status);
+    } else {
+        return response.json()
+    }
+})
+.catch(error => alert(`Could not fetch because: ${error}`))
 
 const getBookings = fetch("http://localhost:3001/api/v1/bookings")
-  .then((response) => response.json())
+  .then(response => {
+    if(!response.ok) {
+        throw new Error("There was an error. Status Code: ", response.status);
+    } else {
+        return response.json()
+    }
+})
+.catch(error => alert(`Could not fetch because: ${error}`));
+
 
 const getRooms = fetch("http://localhost:3001/api/v1/rooms")
-  .then((response) => response.json())
+  .then(response => {
+    if(!response.ok) {
+        throw new Error("There was an error. Status Code: ", response.status);
+    } else {
+        return response.json()
+    }
+})
+.catch(error => alert(`Could not fetch because: ${error}`));
 
 //functions
 
@@ -58,11 +80,7 @@ function getPromises() {
 Promise.all([getCustomers, getBookings, getRooms])
   .then((data) => {
        console.log(data)
-       console.log(data[1].bookings)
        dataClass = new Data(data[0].customers, data[1].bookings, data[2].rooms)
-       
-        //  newCustomer = new Customer(data[0].customers[0]);
-        //  console.log(newCustomer, "Customer")
 })
 }
 
