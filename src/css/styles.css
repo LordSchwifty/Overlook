@@ -190,3 +190,7 @@ form {
         margin-top: 235px;
         padding: 16px;
     }
+    
+    .login-title {
+      font-size: 30px;
+    }

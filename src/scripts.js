@@ -11,7 +11,7 @@ let dataClass
 let tag
 let idNum
 let indexNum
-
+const loginTitle = document.querySelector('.login-title')
 const bookBtn = document.querySelector('.book-btn')
 const userInfo = document.getElementById('navUserInfo')
 const loginView = document.querySelector('.login-view')
@@ -98,6 +98,8 @@ function login(event) {
     showMainPage()
     userInfo.innerText = `${user}`
     customerBookings(dataClass)
+    } else {
+        loginTitle.innerText = 'The username/password is incorrect'
     }
 }
 
@@ -181,7 +183,7 @@ filterOpenRooms.forEach(room => {
    fetch('http://localhost:3001/api/v1/bookings', {
             method: 'POST',
             body: JSON.stringify({ 
-                "userID": indexNum,
+                "userID": idNum,
                 "date": dateSelected,
                 "roomNumber": parseInt(roomNum)
             }),
@@ -189,8 +191,8 @@ filterOpenRooms.forEach(room => {
                 'Content-Type': 'application/json'
             }
         }) .then(response => response.json())
-           .then(data => dataClass.addBooking(data.newBooking))
-           .then(getPromises())
-           .then(showBookingsView())
-           .then(customerBookings(dataClass))
+           .then(data => {dataClass.addBooking(data.newBooking)
+            customerBookings(dataClass)
+            showBookingsView()
+           })
  }
