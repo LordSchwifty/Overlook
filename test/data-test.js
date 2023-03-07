@@ -20,7 +20,6 @@ describe('data class', function() {
         expect(Data).to.be.a('function');
       });
     it('should be an instance of data', function() {
-        console.log('data:', roomsData)
       expect(data1).to.be.an.instanceOf(Data);
     });
     it('should have customers', () => {

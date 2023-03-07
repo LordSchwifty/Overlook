@@ -20,17 +20,17 @@ class Data {
           return booking.userID === customerData.id
         })
           const roomsArray = getRoomForUser.map(room => {
-            console.log(room)
             return room.roomNumber
           })
-          return this.rooms.reduce((acc, cv) => {
-            if(roomsArray.includes(cv.number)){
-              console.log(acc)
-              acc += cv.costPerNight
-            }
+          return roomsArray.reduce((acc, room) => {
+            this.rooms.forEach(element => {
+              if(element.number === room){
+                acc += element.costPerNight
+              }
+            })
             return acc
           }, 0)
-       }
+     }
 
        findOpenRooms(dateQuery) {
         const findRooms = this.bookings.filter(booking => booking.date === dateQuery)
@@ -52,14 +52,6 @@ class Data {
         console.log("Is this working:", this.bookings)
       }
         
-          
-       
-//filter through the bookings array and return all rooms booked on a certain date
-//then filter through the rooms array and return all the rooms that are not matched booked on that date
 }
 
-
-// filter the bookings by customer id. filterByBookings(userid) if userid is the same as bookings user id return the list of bookings
-// take the total number of bookings and adddthem together by the room price and return total
-// find room cost based on room number and instantiate a newe instance of room
 export default Data;
