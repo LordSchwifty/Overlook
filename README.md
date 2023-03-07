@@ -53,3 +53,4 @@ I was assigned part this project on Tuesday, February 28th and had until Tuesday
 - Challenges:
   - While implementing API data on the site was a win, it was also a challenge. Being a new concept I spent a lot of time figuring out how to implement it in the code.
   - I delt with a bug which wasn't updating the bookings section with new bookings and I finally realized that I was showing the bookings view before calling the function to update the bookings. It took a long time of combing through code to figure it out.
+
