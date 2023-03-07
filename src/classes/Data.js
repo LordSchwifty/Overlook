@@ -17,7 +17,6 @@ class Data {
 
      myTotalCost(customerData){
         const getRoomForUser = this.bookings.filter(booking => {
-          console.log('this is the data:', booking)
           return booking.userID === customerData.id
         })
           const roomsArray = getRoomForUser.map(room => {
@@ -41,7 +40,6 @@ class Data {
            })
           })
            this.openRooms = openRooms
-           console.log("shiiiiit:", this.openRooms)
            return openRooms
          }
 
@@ -51,7 +49,7 @@ class Data {
 
       addBooking(newBooking) {
         this.bookings.push(new Booking(newBooking))
-        console.log(this.bookings)
+        console.log("Is this working:", this.bookings)
       }
         
           
