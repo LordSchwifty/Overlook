@@ -2,6 +2,7 @@
 
 body {
   background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgb(92, 75, 203) 100%);
+  font-family:'Times New Roman', Times, serif;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -117,10 +118,6 @@ form {
     width: 300px;
     margin-top: -15px;
 }
-.box:hover {
-  transform: translate(-5px, -5px);
-  box-shadow: 10px 10px 10px #0f0f0f;
-}
 
 .book-btn {
   margin-bottom: 5px;
@@ -130,9 +127,10 @@ form {
 
 .bookings-view {
   margin-top: 200px;
-  height: 200px;
-  width: 700px;
-  background-color: #E1E1E1;
+  height: 300px;
+  width: 800px;
+  border: 4px solid black;
+  background-color: #6392dd;
   overflow: auto;
   display: flex;
   justify-content: center;
@@ -147,10 +145,13 @@ form {
 }
 
 .cost-view {
-  margin-top: 200px;
+  margin-top: 50px;
   height: 100px;
   width: 200px;
-  background-color: #E1E1E1;
+  border: 4px solid black;
+  background-color: white;
+  box-sizing: border-box;
+  padding: 14px 20px;
   overflow: auto;
   display: flex;
   justify-content: center;
@@ -194,3 +195,9 @@ form {
     .login-title {
       font-size: 30px;
     }
+
+    .booking-info{
+      margin-top: -50px;
+      padding: 27px 20px;
+    }
+    

@@ -79,6 +79,7 @@ const getRooms = fetch("http://localhost:3001/api/v1/rooms")
 function getPromises() {
 Promise.all([getCustomers, getBookings, getRooms])
   .then((data) => {
+       console.log(data)
        dataClass = new Data(data[0].customers, data[1].bookings, data[2].rooms)
 })
 }
@@ -90,7 +91,10 @@ function login(event) {
     let createId = user.split('customer')
     idNum = parseInt(createId[1])
     indexNum = idNum - 1
+    console.log(indexNum)
     if(passcode === 'overlook2021'){
+    console.log(user)
+    console.log(passcode)
     showMainPage()
     userInfo.innerText = `${user}`
     customerBookings(dataClass)
@@ -102,11 +106,12 @@ function login(event) {
 function customerBookings(bookingsInfo) {
     const myBookingArray = bookingsInfo.filterBookingsById(bookingsInfo.customers[indexNum])
     const getTotalCost = bookingsInfo.myTotalCost(bookingsInfo.customers[indexNum]).toFixed()
+    console.log(getTotalCost)
      allBookings.innerHTML = "";
      totalCost.innerHTML = "";
      myBookingArray.forEach(booking => {
          allBookings.innerHTML += `
-         <p class="booking-info">Booking Date:${booking.date}, Room Number:${booking.roomNumber} </p>`
+         <p class="booking-info">Booking Date:${booking.date}---------------------> Room Number:${booking.roomNumber}</p>`
      })
         totalCost.innerHTML = `<p class="total-cost">Total Cost: ${getTotalCost}</p>`
  }
@@ -143,12 +148,14 @@ availableRooms.forEach(room => {
 
  function filterRoomsByType(event) {
   let tag = event.target.innerText.toLowerCase();
+  console.log(tag)
   let filterOpenRooms = dataClass.filterOpenRooms(tag)
+  console.log(filterOpenRooms)
   roomsView.innerHTML = "";
 filterOpenRooms.forEach(room => {
     roomsView.innerHTML += `
     <div class="box">
-    <img class="box-image" src="./images/room.png" alt="beautiful-hotel-bedroom"></img>
+    <img class="box-image" src="./images/room.png" alt="room-image"></img>
     <h2 class="room-title">${room.roomType}</h2>
     <p class="bed-info">bedSize: ${room.bedSize}</p>
     <p class="num-beds">numBeds: ${room.numBeds}</p>
