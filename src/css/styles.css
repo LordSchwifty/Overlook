@@ -102,7 +102,7 @@ form {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  margin-top: 126px;
+  margin-top: 750px;
 }
 
 .box {
@@ -205,8 +205,8 @@ form {
     }
 
     .date-button{
-      background-color: whitesmoke;
-        color: black;
+      background-color: rgb(6, 6, 6);
+        color: rgb(253, 251, 251);
         padding: 14px 20px;
         border: none;
         cursor: pointer;
@@ -216,6 +216,6 @@ form {
         align-items: center;
         justify-content: center;
         border: 2px solid black;
-        border-radius: 6px;
+        border-radius: 9px;
     }
     
