@@ -36,6 +36,7 @@ body {
 .dropdown {
   float: left;
   overflow: hidden;
+  cursor: pointer;
 }
 .dropdown .dropbtn {
   background-color: inherit;
@@ -51,6 +52,7 @@ body {
   position: absolute;
   background-color: #FFFFFF;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  cursor: pointer;
 }
 
 .dropdown-content li {
@@ -181,7 +183,6 @@ form {
         cursor: pointer;
         width: 100%;
     }
-    /* set a hover effect for the button*/
      
     button:hover {
         opacity: 0.8;
@@ -199,5 +200,22 @@ form {
     .booking-info{
       margin-top: -50px;
       padding: 27px 20px;
+      border: 4px solid black;
+      background-color: whitesmoke;
+    }
+
+    .date-button{
+      background-color: whitesmoke;
+        color: black;
+        padding: 14px 20px;
+        border: none;
+        cursor: pointer;
+        width: 50px;
+        height: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid black;
+        border-radius: 6px;
     }
     
